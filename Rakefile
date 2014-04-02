@@ -36,6 +36,14 @@ task :mkcmds do
   cmdlines.each {|c| make_cmdline(config,c)}
 end
 
+task :build_yocto_qemu do
+  yoctopath = "#{config['qemuinator_base']}yocto"
+  sh "sudo mkdir -p #{yoctopath}"
+  sh "sudo chmod a+w #{yoctopath}"
+  scriptpath = File.join(File.dirname(__FILE__),"config", "build_yocto_qemu.sh")
+  sh "cd #{yoctopath}; #{scriptpath} #{yoctopath}"
+end
+
 task :default do
   puts "pbbt!"
 end
