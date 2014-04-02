@@ -1,0 +1,3 @@
+qemuinator_base: "/opt/qemuinator/"
+qemubinary: "/opt/qemuinator/poky/usr/bin/qemu-system-"
+

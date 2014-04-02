@@ -1,0 +1,77 @@
+-
+  arch: x86_64
+  port: 5511
+  qemu:
+    redir: true
+    params:
+      m: 256
+      nographic:
+      no-reboot:
+      hda: debian_wheezy_amd64_standard.qcow2
+  files:
+    - http://people.debian.org/~aurel32/qemu/amd64/debian_wheezy_amd64_standard.qcow2
+-
+  arch: i386
+  port: 5522
+  qemu:
+    redir: true
+    params:
+      m: 256
+      nographic:
+      no-reboot:
+      hda: debian_wheezy_i386_standard.qcow2
+  files:
+    - http://people.debian.org/~aurel32/qemu/i386/debian_wheezy_i386_standard.qcow2
+-
+  arch: ppc
+  port: 5533
+  qemu:
+    redir: true
+    params:
+      m: 256
+      nographic:
+      no-reboot:
+      hda: debian_wheezy_powerpc_standard.qcow2
+  files:
+    - http://people.debian.org/~aurel32/qemu/powerpc/debian_wheezy_powerpc_standard.qcow2
+-
+  arch: mips
+  port: 5544
+  qemu:
+    redir: true
+    params:
+      m: 256
+      nographic:
+      no-reboot:
+      hda: debian_wheezy_mips_standard.qcow2
+      kernel: vmlinux-3.2.0-4-4kc-malta
+    append:
+      root: /dev/sda1
+      rw:
+      panic: 1
+      console: ttyS0
+  files:
+    - http://people.debian.org/~aurel32/qemu/mips/debian_wheezy_mips_standard.qcow2
+    - http://people.debian.org/~aurel32/qemu/mips/vmlinux-3.2.0-4-4kc-malta
+-
+  arch: arm
+  port: 5555
+  qemu:
+    redir: true
+    params:
+      m: 256
+      nographic:
+      no-reboot:
+      M: versatilepb
+      hda: debian_wheezy_armel_standard.qcow2
+      initrd: initrd.img-3.2.0-4-versatile
+      kernel: vmlinuz-3.2.0-4-versatile
+    append:
+      root: /dev/sda1
+      rw:
+      panic: 1
+      console: ttyAMA0
+  files:
+    - http://people.debian.org/~aurel32/qemu/armel/debian_wheezy_armel_standard.qcow2
+    - http://people.debian.org/~aurel32/qemu/armel/vmlinuz-3.2.0-4-versatile
+    - http://people.debian.org/~aurel32/qemu/armel/initrd.img-3.2.0-4-versatile
