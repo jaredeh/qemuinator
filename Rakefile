@@ -63,12 +63,12 @@ task :build_machine do
     vm['files'].each do |url|
       file = url.split('/')[-1]
       src = File.join(config['backup_path'], vm['system'], file)
-      dst = File.join(File.join(vmpath, file)
+      dst = File.join(File.join(vmpath, file))
       if not File.exists?(dst)
         cp src, dst
       end
       cmdline = make_cmdline(config,vm)
-      script = File.join(vmpath,"go.sh")
+      script = File.join(vmpath,"launch_vm.sh")
       File.open(script, 'w') {|f| f.write(cmdline) }
       sh "chmod +x #{script}"
     end
@@ -100,6 +100,8 @@ end
 task :install => [:make_directories, :prep_host, :build_yocto_qemu_binaries, :download_qemu_systems_files, :build_machine]
 
 task :start do
+ #for each dir in config['machines_path']
+ # screen -S build_$ARCH -d -m sudo ./launch_vm.sh
 end
 
 task :default do
