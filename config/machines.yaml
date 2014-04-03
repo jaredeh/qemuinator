@@ -1,0 +1,20 @@
+-
+  name: debian-x86_64
+  port: 5511
+  system: debian_wheezy_amd64_standard
+-
+  name: debian-i386
+  port: 5522
+  system: debian_wheezy_i386_standard
+-
+  name: debian-ppc
+  port: 5533
+  system: debian_wheezy_powerpc_standard
+-
+  name: debian-mips
+  port: 5544
+  system: debian_wheezy_mips_standard
+-
+  name: debian-arm
+  port: 5555
+  system: debian_wheezy_armel_standard

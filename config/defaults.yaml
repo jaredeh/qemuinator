@@ -1,3 +1,5 @@
-qemuinator_base: "/opt/qemuinator/"
-qemubinary: "/opt/qemuinator/yocto/usr/bin/qemu-system-"
-
+root_path: "/opt/qemuinator/"
+yocto_path: "yocto"
+yocto_qemubinary: "usr/bin/qemu-system-"
+backup_path: "backup"
+machines_path: "machines"
