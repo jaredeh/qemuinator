@@ -39,7 +39,7 @@ def make_cmdline(config,qarch)
     cmd += append.join(" ")
     cmd += "\""
   end
-  puts cmd
+  return cmd
 end
 
 task :download_qemu_systems_files do
@@ -76,8 +76,10 @@ task :build_machine do
 end
 
 task :build_yocto_qemu_binaries do
-  scriptpath = File.join(File.dirname(__FILE__),"config", "build_yocto_qemu.sh")
-  sh "cd #{config['yocto_path']}; #{scriptpath} #{config['yocto_path']}"
+  if not File.exist?(config['yocto_qemubinary'] + "i386")
+    scriptpath = File.join(File.dirname(__FILE__),"config", "build_yocto_qemu.sh")
+    sh "cd #{config['yocto_path']}; #{scriptpath} #{config['yocto_path']}"
+  end
 end
 
 task :make_directories do
