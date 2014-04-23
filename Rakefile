@@ -102,8 +102,12 @@ end
 task :install => [:make_directories, :prep_host, :build_yocto_qemu_binaries, :download_qemu_systems_files, :build_machine]
 
 task :start do
- #for each dir in config['machines_path']
- # screen -S build_$ARCH -d -m sudo ./launch_vm.sh
+  Dir.foreach(config['machines_path']) do |machine|
+    if ['.','..'].include?(machine) then next end
+    machine_path = File.join(config['machines_path'],machine)
+    if not File.directory?(machine_path) then next end
+    sh "screen -S #{machine} -d -m  #{machine_path}/launch_vm.sh"
+  end
 end
 
 task :default do
