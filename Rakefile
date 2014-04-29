@@ -99,7 +99,12 @@ task :prep_host do
   end
 end
 
-task :install => [:make_directories, :prep_host, :build_yocto_qemu_binaries, :download_qemu_systems_files, :build_machine]
+task :clone do
+  sh "cp -r .git #{config['root_path']}"
+  sh "cd #{config['root_path']}; git checkout -f"
+end
+
+task :install => [:make_directories, :prep_host, :build_yocto_qemu_binaries, :download_qemu_systems_files, :build_machine, :clone]
 
 task :start do
   Dir.foreach(config['machines_path']) do |machine|
