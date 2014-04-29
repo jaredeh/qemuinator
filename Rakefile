@@ -69,7 +69,10 @@ task :build_machine do
       end
       cmdline = make_cmdline(config,vm)
       script = File.join(vmpath,"launch_vm.sh")
-      File.open(script, 'w') {|f| f.write(cmdline) }
+      File.open(script, 'w') do |f|
+        f.write("cd $1; ")
+        f.write(cmdline)
+      end
       sh "chmod +x #{script}"
     end
   end
@@ -111,7 +114,7 @@ task :start do
     if ['.','..'].include?(machine) then next end
     machine_path = File.join(config['machines_path'],machine)
     if not File.directory?(machine_path) then next end
-    sh "screen -S #{machine} -d -m  #{machine_path}/launch_vm.sh"
+    sh "screen -S #{machine} -d -m  #{machine_path}/launch_vm.sh #{machine_path}"
   end
 end
 
