@@ -1,5 +1,6 @@
 require 'yaml'
 
+
 def get_config()
   config = YAML.load_file("config/defaults.yaml")
   config.merge!(YAML.load_file("config/systems.yaml"))
@@ -105,6 +106,18 @@ end
 task :clone do
   sh "cp -r .git #{config['root_path']}"
   sh "cd #{config['root_path']}; git checkout -f"
+end
+
+task :debian_jenkins_deps do
+  require 'net/ssh'
+  puts "jenkins_dep"
+  scriptpath = File.join(File.dirname(__FILE__),"config", "wheezy_jenkins_deps.sh")
+  fdata = File.read(scriptpath)
+  config['machines'].each do |vm|
+    Net::SSH.start( 'localhost', 'root', :password => 'root', :port => vm['port'] ) do |ssh|
+      puts ssh.exec!(fdata)
+    end
+  end
 end
 
 task :install => [:make_directories, :prep_host, :build_yocto_qemu_binaries, :download_qemu_systems_files, :build_machine, :clone]
