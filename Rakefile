@@ -110,12 +110,18 @@ end
 
 task :debian_jenkins_deps do
   require 'net/ssh'
-  puts "jenkins_dep"
   scriptpath = File.join(File.dirname(__FILE__),"config", "wheezy_jenkins_deps.sh")
   fdata = File.read(scriptpath)
+  keypath = File.join(File.dirname(__FILE__),"config", "id_rsa.pub")
+  kdata = File.read(keypath)
   config['machines'].each do |vm|
     Net::SSH.start( 'localhost', 'root', :password => 'root', :port => vm['port'] ) do |ssh|
       puts ssh.exec!(fdata)
+    end
+    Net::SSH.start( 'localhost', 'user', :password => 'user', :port => vm['port'] ) do |ssh|
+      puts ssh.exec!("mkdir -p ~/.ssh")
+      puts ssh.exec!("echo \"#{kdata}\" >> ~/.ssh/authorized_keys")
+      puts ssh.exec!("chmod 700 ~/.ssh && chmod 600 ~/.ssh/*")
     end
   end
 end
