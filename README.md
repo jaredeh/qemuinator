@@ -11,7 +11,7 @@ install yocto/poky build to create qemu files
    >apt-get install tinyproxy
    >export http_proxy=http://10.0.2.2:8888
    >
-   >apt-get update
+   >apt-get update 
    >apt-get -y install sudo git
    >
    >apt-get -y install build-essential fakeroot
