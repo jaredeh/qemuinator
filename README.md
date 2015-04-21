@@ -8,21 +8,18 @@ Builds on the work of Aurélien Jarno (http://www.aurel32.net/) with his Debian 
 host prep
 
 install yocto/poky build to create qemu files
+>apt-get install tinyproxy
 >
-apt-get install tinyproxy
+>export http_proxy=http://10.0.2.2:8888
+>apt-get update
+>apt-get -y install sudo git
+>apt-get -y install build-essential fakeroot
+>apt-get -y build-dep linux
+>
+>apt-get -y install rake
+>apt-get install gobjc
+>apt-get install gnustep-make
+>apt-get install libgnustep-base-dev
+>apt-get install autoconf automake
+>apt-get install libtool
 
-
-
-export http_proxy=http://10.0.2.2:8888
-apt-get update
-apt-get -y install sudo git
-apt-get -y install build-essential fakeroot
-apt-get -y build-dep linux
-
-apt-get -y install rake
-apt-get install gobjc
-apt-get install gnustep-make
-apt-get install libgnustep-base-dev
-apt-get install autoconf automake
-apt-get install libtool
-<
