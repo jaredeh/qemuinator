@@ -8,6 +8,7 @@ Builds on the work of Aurélien Jarno (http://www.aurel32.net/) with his Debian 
 host prep
 
 install yocto/poky build to create qemu files
+>
 apt-get install tinyproxy
 
 
@@ -24,3 +25,4 @@ apt-get install gnustep-make
 apt-get install libgnustep-base-dev
 apt-get install autoconf automake
 apt-get install libtool
+<
